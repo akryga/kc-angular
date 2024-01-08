@@ -17,18 +17,7 @@ import { DataSource } from '@angular/cdk/collections';
 
 
 export class ProcessComponent implements OnInit, AfterViewInit{
-  pss: Process[] = [{
-  serviceName: "rb",
-  serviceFullName: "rb",
-  serviceType: "runtime-bundle",
-  "serviceVersion": "",
-  "id": "95d263fd-9c64-11ee-98d9-0242ac12000a",
-  "startDate": "2023-12-16T22:43:52.122+0000",
-  "status": "RUNNING",
-  "processDefinitionId": "startTimerEventExample:1:86b9088d-9c64-11ee-98d9-0242ac12000a",
-  "processDefinitionKey": "startTimerEventExample",
-  "processDefinitionVersion": 1,
-  "processDefinitionName": "Timer start event example"}];
+  pss: Process[] = [];
   displayedColumns: string[] = [ "serviceName",  "serviceFullName", "serviceType",
   "serviceVersion", "id", "startDate", "status","processDefinitionId",
   "processDefinitionKey",  "processDefinitionVersion",  "processDefinitionName"];
@@ -51,7 +40,8 @@ export class ProcessComponent implements OnInit, AfterViewInit{
   async refreshProcesses() {
    
     const token = await this.keycloak.getToken();    //console.log(token);
-    const response = await fetch('/rb/v1/process-instances?page=0&size=20', {
+    ///query/v1/process-instances?page=0&size=20
+    const response = await fetch('/query/v1/process-instances?page=0&size=20', {
       headers: {
         "Accept": 'application/json',
         "Authorization": `Bearer ${token}`

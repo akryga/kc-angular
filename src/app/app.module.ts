@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { ActivitiAppComponent } from './activiti-app/activiti-app.component';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -42,7 +46,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ProcessComponent,
     TaskComponent,
     EventComponent,
-    ModelComponent
+    ModelComponent,
+    ActivitiAppComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
-    
+    MatListModule,
+    MatExpansionModule,
+    MatButtonModule
   ],
   providers: [
     {

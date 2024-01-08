@@ -1,1 +1,3 @@
-<p>task works!</p>
+<p>Задач: {{tss.length}}</p>
+
+<div *ngFor="let ts of tss; index as i"><pre>{{ts | json}}</pre></div>

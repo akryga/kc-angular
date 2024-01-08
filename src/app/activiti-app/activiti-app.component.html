@@ -1,0 +1,13 @@
+<mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>Приложений: </mat-panel-title>
+    <mat-panel-description>{{apss.length}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <pre *ngFor="let aps of apss; index as i">{{aps | json}}</pre>
+    <!-- <mat-list role="list">
+        <mat-list-item role="listitem">Item 1</mat-list-item>
+        <mat-list-item role="listitem">Item 2</mat-list-item>
+        <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list> -->
+</mat-expansion-panel>

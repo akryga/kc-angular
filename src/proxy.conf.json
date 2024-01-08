@@ -1,5 +1,5 @@
 {
-    "/rb": {
+    "/query": {
     "target": "http://host.docker.internal:80",
     "secure": false
     }
