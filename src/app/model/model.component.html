@@ -1,1 +1,5 @@
-<p>model works!</p>
+<p>Модели: {{mdls.length}}</p>
+
+<div *ngFor="let mdl of mdls; index as i"><pre>{{mdl | json}}</pre></div>
+
+

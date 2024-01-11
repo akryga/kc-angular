@@ -1,6 +1,14 @@
 {
-    "/query": {
+    "/rb": {
     "target": "http://host.docker.internal:80",
     "secure": false
+    },
+    "/audit": {
+        "target": "http://host.docker.internal:80",
+        "secure": false
+    },
+    "/query": {
+        "target": "http://host.docker.internal:80",
+        "secure": false
     }
 }

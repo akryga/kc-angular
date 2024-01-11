@@ -22,7 +22,7 @@ export class TaskComponent implements OnInit{
     
     const token = await this.keycloak.getToken();    //console.log(token);
     ///query/v1/process-instances?page=0&size=20
-    const response = await fetch('/query/v1/tasks?page=0&size=20', {
+    const response = await fetch('/rb/v1/tasks?page=0&size=20', {
       headers: {
         "Accept": 'application/json',
         "Authorization": `Bearer ${token}`
