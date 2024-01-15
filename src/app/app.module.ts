@@ -17,6 +17,11 @@ import { ActivitiAppComponent } from './activiti-app/activiti-app.component';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import { ActTableComponent } from './act-table/act-table.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -47,7 +52,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     TaskComponent,
     EventComponent,
     ModelComponent,
-    ActivitiAppComponent
+    ActivitiAppComponent,
+    ActTableComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatPaginatorModule,
     MatListModule,
     MatExpansionModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [
     {

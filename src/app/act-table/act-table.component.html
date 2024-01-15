@@ -1,0 +1,24 @@
+<div class="mat-elevation-z8 mat-table mt-1">
+  <table mat-table class="" matSort aria-label="Elements">
+    
+    <!-- Id Column -->
+    <ng-component *ngFor="let c of displayedColumns" >
+    <ng-container matColumnDef="{{c}}">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-icon (click)="hide(c)">hide_source</mat-icon>{{c}}
+      </th>
+      <td mat-cell *matCellDef="let row">{{row[c]}}</td>
+    </ng-container>    
+    </ng-component>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource.totalItems"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+</div>

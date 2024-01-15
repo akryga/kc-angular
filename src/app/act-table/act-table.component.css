@@ -1,0 +1,9 @@
+.full-width-table {
+  width: 100%;
+}
+.mat-table {
+  overflow-x: scroll;
+}
+th mat-icon {font-size: 0.75rem; transform: translate(-1.3rem,0.4rem); display: none; position: absolute;}
+
+th:hover  mat-icon {display: block;}
