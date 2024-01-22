@@ -3,17 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProcessComponent } from './process/process.component';
-import { TaskComponent } from './task/task.component';
-import { EventComponent } from './event/event.component';
-import { ModelComponent } from './model/model.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import { ActivitiAppComponent } from './activiti-app/activiti-app.component';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
@@ -48,11 +43,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
 @NgModule({
   declarations: [
     AppComponent,
-    ProcessComponent,
-    TaskComponent,
-    EventComponent,
-    ModelComponent,
-    ActivitiAppComponent,
     ActTableComponent
   ],
   imports: [

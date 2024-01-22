@@ -69,7 +69,8 @@ const apiString: any = {
   process: "/query/v1/process-instances",
   task: "/rb/v1/tasks",
   event: "/audit/v1/events",
-  model: "/rb/v1/process-definitions"
+  model: "/rb/v1/process-definitions",
+  apps: "/query/v1/applications"
 }
 
 const objectColumns: any = {
@@ -88,7 +89,7 @@ const objectColumns: any = {
     "processDefinitionVersion": 1,
     "processDefinitionName": "Timer start event example"
   },
-  model:{
+  model: {
     "appVersion": "1",
     "appName": "default-app",
     "serviceName": "rb",
@@ -101,7 +102,7 @@ const objectColumns: any = {
     "description": "my documentation text",
     "version": 1
   },
-  event:{
+  event: {
     "id": "754c1c05-67e6-4525-bb40-589a0f987f99",
     "timestamp": 1702616681661,
     "entity": {
@@ -121,7 +122,7 @@ const objectColumns: any = {
     "messageId": "aee6b643-284e-499e-9bcf-704a5c632d87",
     "eventType": "PROCESS_DEPLOYED"
     },
-    task:{
+    task: {
       "serviceName": "rb",
       "serviceFullName": "rb",
       "serviceVersion": "",

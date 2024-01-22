@@ -76,10 +76,11 @@ export class ActTableDataSource extends DataSource<any> {
         )
         .pipe(map((p) => {
           if(('pageSize' in p && 'pageIndex' in p) || ('active' in p && 'direction' in p)){
-            this.getDatasource().subscribe( p => {
-              this.msgService.add(p);
-              // console.log('subscribe sortEvent', p, this.connector);
-            });
+            if( this.paginator && this.data.length<=this.paginator.pageSize )
+              this.getDatasource().subscribe( p => {
+                this.msgService.add(p);
+                // console.log('subscribe sortEvent', p, this.connector);
+              });
             // console.log('pageEvent', p, this.connector);
           }
           // else if('active' in p && 'direction' in p) {
@@ -94,7 +95,8 @@ export class ActTableDataSource extends DataSource<any> {
             this.paginator!.length = this.totalItems = p.list.pagination.totalItems;
             // console.log('event', p, this.connector);
           }
-          return [...this.data]; 
+          
+          return (this.paginator&&this.data.length>this.paginator.pageSize)? this.getPagedData(this.getSortedData([...this.data])):this.data; 
         }));
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');
@@ -120,76 +122,37 @@ export class ActTableDataSource extends DataSource<any> {
       //.pipe(map ((data: any) => { console.log('http.get->', data); return data.list.entries.map((r: any[] ) => { return (<any>r).entry; }) }));
   }
 
-  // refreshPagedSortedData(page?: MatPaginator, sort?: MatSort // pageIndex: number, pageSize: number, sortActive: string, sortDirection: string
-  //   ){
-   
-  //   if(this.connector) {
-
-  //     this.keycloak.getToken().then( token =>{
-  //       const params: HttpParams = new HttpParams();
-  //       if(this.paginator){
-  //         params.append("page", '' + this.paginator.pageIndex);
-  //         params.append("size", '' + this.paginator.pageSize);
-  //       }
-  //       if(this.sort)
-  //         params.append("sort", this.sort.active + "," + this.sort.direction);
-  //       let url:string = this.connector + "?" + params.toString();
-  //       fetch( url, 
-  //       { headers: {
-  //                     "Content-Type": "application/json",
-  //                     "Accept": 'application/json',
-  //                     "Authorization": `Bearer ${token}`
-  //                   },
-  //       })
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error: ${response.status}`);
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((json) => {
-  //         // console.log('->',json.list.entries);
-  //         return this.data = json.list.entries.map((r: any[] ) => {return (<any>r).entry;})
-  //       })
-  //       .then( console.log)
-  //       .catch( (err) => console.error(`Fetch problem: ${err.message}`));
-  //     });  
-  //   }
-  // }
-
-
-
     /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  // private getPagedData(data: any[]): any[] {
-  //   if (this.paginator) {
-  //     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-  //     return data.splice(startIndex, this.paginator.pageSize);
-  //   } else {
-  //     return data;
-  //   }
-  // }
+  private getPagedData(data: any[]): any[] {
+    if (this.paginator) {
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      return data.splice(startIndex, this.paginator.pageSize);
+    } else {
+      return data;
+    }
+  }
 
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  // private getSortedData(data: any[]): any[] {
-  //   if (!this.sort || !this.sort.active || this.sort.direction === '') {
-  //     return data;
-  //   }
+  private getSortedData(data: any[]): any[] {
+    if (!this.sort || !this.sort.active || this.sort.direction === '') {
+      return data;
+    }
 
-  //   return data.sort((a, b) => {
-  //     const isAsc = this.sort?.direction === 'asc';
-  //     switch (this.sort?.active) {
-  //       case 'name': return compare(a.name, b.name, isAsc);
-  //       case 'id': return compare(+a.id, +b.id, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  // }
+    return data.sort((a, b) => {
+      const isAsc = this.sort?.direction === 'asc';
+      switch (this.sort?.active) {
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'id': return compare(+a.id, +b.id, isAsc);
+        default: return 0;
+      }
+    });
+  }
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
